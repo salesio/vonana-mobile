@@ -1,0 +1,143 @@
+// ==========================================================================
+// VONANA Database Schema (Prisma ORM / PostgreSQL)
+// Targets: Users, Profiles, Merchant Shops, Listings, Chat, Groups, M-Pesa Hook
+// ==========================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum AccountType {
+  PESSOAL
+  LOJA_OFICIAL
+  SERVICOS
+  ONG
+}
+
+enum EntityType {
+  SHOP
+  SERVICE
+  INDIVIDUAL
+}
+
+enum Category {
+  AUTO
+  PROPERTY
+  FASHION
+  SERVICES
+  TECH
+}
+
+enum MessageStatus {
+  SENT
+  DELIVERED
+  SEEN
+}
+
+enum GroupPrivacy {
+  PUBLIC
+  PRIVATE
+}
+
+model User {
+  id            String       @id @default(uuid())
+  phone         String       @unique // +258 Phone Number
+  email         String?      @unique
+  passwordHash  String
+  name          String
+  username      String       @unique
+  avatarUrl     String?
+  bio           String?
+  city          String       @default("Maputo")
+  accountType   AccountType  @default(PESSOAL)
+  isVerified    Boolean      @default(false)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  shops         Shop[]
+  listings      Listing[]
+  sentMessages  Message[]    @relation("SentMessages")
+  recvMessages  Message[]    @relation("ReceivedMessages")
+  groupMemberships GroupMember[]
+}
+
+model Shop {
+  id                  String       @id @default(uuid())
+  userId              String
+  user                User         @relation(fields: [userId], references: [id])
+  storeName           String
+  handle              String       @unique
+  tagline             String?
+  bio                 String?
+  address             String
+  city                String       @default("Maputo")
+  phone               String
+  rating              Float        @default(5.0)
+  salesCount          Int          @default(0)
+  responseRatePercent Int          @default(98)
+  verifiedPartner     String?      // e.g. "M-PESA", "e-MOLA"
+  createdAt           DateTime     @default(now())
+
+  listings            Listing[]
+}
+
+model Listing {
+  id            String       @id @default(uuid())
+  userId        String
+  user          User         @relation(fields: [userId], references: [id])
+  shopId        String?
+  shop          Shop?        @relation(fields: [shopId], references: [id])
+  title         String
+  priceMzn      Float
+  category      Category
+  entityType    EntityType   @default(INDIVIDUAL)
+  subcat        String?
+  city          String       @default("Maputo")
+  description   String?
+  images        String[]
+  specs         Json?        // Flexible Category-Specific JSON (Car mileage, DUAT title, Clothing size)
+  isBoostedMpesa Boolean     @default(false)
+  createdAt     DateTime     @default(now())
+}
+
+model Message {
+  id            String        @id @default(uuid())
+  senderId      String
+  sender        User          @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId    String
+  receiver      User          @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  content       String
+  mediaUrl      String?
+  status        MessageStatus @default(SENT)
+  createdAt     DateTime      @default(now())
+}
+
+model Group {
+  id            String       @id @default(uuid())
+  title         String
+  description   String?
+  coverUrl      String?
+  privacy       GroupPrivacy @default(PUBLIC)
+  city          String       @default("Maputo")
+  memberCount   Int          @default(1)
+  createdAt     DateTime     @default(now())
+
+  members       GroupMember[]
+}
+
+model GroupMember {
+  id            String       @id @default(uuid())
+  groupId       String
+  group         Group        @relation(fields: [groupId], references: [id])
+  userId        String
+  user          User         @relation(fields: [userId], references: [id])
+  role          String       @default("MEMBER") // ADMIN, MODERATOR, MEMBER
+  joinedAt      DateTime     @default(now())
+
+  @@unique([groupId, userId])
+}

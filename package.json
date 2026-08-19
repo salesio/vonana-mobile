@@ -1,0 +1,20 @@
+{
+  "name": "vonana",
+  "version": "1.0.0",
+  "description": "VONANA Platform - Rede Social, Mercado & Mensagens em Moçambique",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0"
+  }
+}

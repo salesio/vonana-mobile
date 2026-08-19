@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-MZ" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VONANA - Rede Social, Mercado & Mensagens em Moçambique</title>
+  <meta name="description" content="VONANA é a plataforma digital de Moçambique para conexão social, compra e venda com M-Pesa, e mensagens instantâneas.">
+  
+  <!-- RemixIcon CDN for Silky Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Custom Silky Design System -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================== -->
+  <header class="vonana-header">
+    <div class="header-container">
+      
+      <!-- Brand Section -->
+      <div class="brand-section">
+        <a href="#" class="brand-logo-link">
+          <img src="assets/VONANA LOGO.png" alt="VONANA Logo" class="brand-logo">
+        </a>
+        <span class="brand-badge">🇲🇿 MZ</span>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <i class="ri-search-2-line search-icon"></i>
+        <input type="text" class="search-input" id="global-search-input" placeholder="Pesquisar produtos, carros, terrenos, serviços em Maputo...">
+      </div>
+
+      <!-- Main Navigation Tabs (Merged Commerce Hub) -->
+      <nav class="nav-tabs" id="main-nav">
+        <a href="#" class="nav-item active" data-page="feed">
+          <i class="ri-compass-3-line"></i> Feed
+        </a>
+        <a href="#" class="nav-item" data-page="marketplace">
+          <i class="ri-store-3-line"></i> Mercado & Lojas
+        </a>
+        <a href="#" class="nav-item" data-page="chat">
+          <i class="ri-chat-3-line"></i> Mensagens
+        </a>
+        <a href="#" class="nav-item" data-page="pages">
+          <i class="ri-community-line"></i> Grupos & Páginas
+        </a>
+        <a href="#" class="nav-item" data-page="profile">
+          <i class="ri-user-3-line"></i> Perfil
+        </a>
+        <a href="#" class="nav-item" data-page="auth">
+          <i class="ri-key-2-line"></i> Entrar
+        </a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="header-actions">
+        <button class="icon-btn" id="theme-toggle-btn" title="Alternar Modo Claro / Escuro">
+          <i class="ri-moon-fill"></i>
+        </button>
+        <button class="icon-btn" title="Notificações">
+          <i class="ri-notification-3-line"></i>
+          <span class="badge-dot"></span>
+        </button>
+
+        <!-- User Quick Avatar Button -->
+        <button class="user-avatar-btn" id="open-edit-profile-btn">
+          <img src="assets/VONANA APP ICON.png" alt="User Avatar" class="user-avatar-img">
+          <span class="user-name-small">Alves King</span>
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN APP VIEWS CONTAINER
+       ========================================================================== -->
+  <main class="app-container">
+
+    <!-- ==========================================================================
+         PAGE 1: FEED VIEW (LINHA DO TEMPO)
+         ========================================================================== -->
+    <section class="page-view active" id="page-feed">
+      <div class="feed-layout">
+        
+        <!-- Left Sidebar / Navigation Info -->
+        <aside class="feed-left-sidebar">
+          <div class="sidebar-widget">
+            <div class="widget-title">
+              <span>Meu Perfil</span>
+              <a href="#" class="widget-link nav-item" data-page="profile">Ver Completo</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+              <img src="assets/VONANA APP ICON.png" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;" alt="Avatar">
+              <div>
+                <h4 style="font-size: 15px; font-weight: 700;">Alves King <i class="ri-checkbox-circle-fill verified-icon"></i></h4>
+                <p style="font-size: 12px; color: var(--text-subtle);">@alvesking • Maputo</p>
+              </div>
+            </div>
+            <button class="btn-edit-profile" style="width: 100%; justify-content: center;" onclick="document.getElementById('open-edit-profile-btn').click()">
+              <i class="ri-edit-box-line"></i> Editar Perfil
+            </button>
+          </div>
+
+          <div class="sidebar-widget">
+            <div class="widget-title">
+              <span>Atalhos Rápidos</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="#" class="nav-item" data-page="marketplace" style="justify-content: flex-start; border-radius: 12px;">
+                <i class="ri-store-3-line" style="color: var(--primary);"></i> Mercado & Lojas Unificadas
+              </a>
+              <a href="#" class="nav-item" data-page="shop" style="justify-content: flex-start; border-radius: 12px;">
+                <i class="ri-store-2-line" style="color: var(--accent-green);"></i> Minha Loja Oficial
+              </a>
+              <a href="#" class="nav-item" data-page="chat" style="justify-content: flex-start; border-radius: 12px;">
+                <i class="ri-message-3-line" style="color: var(--accent-gold);"></i> Negociações Activas
+              </a>
+              <a href="#" class="nav-item" data-page="pages" style="justify-content: flex-start; border-radius: 12px;">
+                <i class="ri-flag-line" style="color: var(--primary);"></i> Páginas & Grupos
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Center Feed Column -->
+        <main class="feed-main-col">
+          
+          <!-- Stories Bar -->
+          <div class="stories-bar">
+            <div class="story-card" style="background: var(--bg-surface); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px dashed var(--primary);">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 8px;">
+                <i class="ri-add-line"></i>
+              </div>
+              <span style="font-size: 12px; font-weight: 700; color: var(--text-main);">Criar Story</span>
+            </div>
+
+            <div class="story-card nav-item" data-page="shop">
+              <img src="assets/hero_banner.jpg" class="story-bg" alt="Story">
+              <img src="assets/VONANA APP ICON.png" class="story-avatar" alt="User">
+              <span class="story-name">Loja Tech Maputo</span>
+            </div>
+
+            <div class="story-card nav-item" data-page="shop">
+              <img src="assets/product_phone.jpg" class="story-bg" alt="Story">
+              <img src="assets/VONANA ICON.png" class="story-avatar" alt="User">
+              <span class="story-name">Beira Fashion</span>
+            </div>
+
+            <div class="story-card">
+              <img src="assets/hero_banner.jpg" class="story-bg" alt="Story">
+              <img src="assets/VONANA LOGO.png" class="story-avatar" alt="User">
+              <span class="story-name">ONG Moçambique</span>
+            </div>
+          </div>
+
+          <!-- Post Publisher Card -->
+          <div class="publisher-card">
+            <div class="publisher-top">
+              <img src="assets/VONANA APP ICON.png" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" alt="Avatar">
+              <input type="text" class="publisher-input" placeholder="No que estás a pensar, Alves? Partilha com Moçambique...">
+            </div>
+            <div class="publisher-actions">
+              <div class="pub-tools">
+                <button class="pub-btn"><i class="ri-image-add-line" style="color: var(--accent-green);"></i> Foto/Vídeo</button>
+                <button class="pub-btn" id="open-voice-note-pub-btn"><i class="ri-mic-fill" style="color: var(--primary);"></i> Nota de Voz (Áudio)</button>
+                <button class="pub-btn" id="open-create-listing-btn"><i class="ri-price-tag-3-line" style="color: var(--accent-gold);"></i> Criar Anúncio Profissional</button>
+                <button class="pub-btn" id="open-mpesa-pay-btn"><i class="ri-flashlight-fill" style="color: var(--mpesa-red);"></i> Boost M-Pesa</button>
+              </div>
+              <button class="pub-submit-btn">Publicar</button>
+            </div>
+          </div>
+
+          <!-- Feed Post 1 -->
+          <article class="post-card">
+            <div class="post-header">
+              <div class="author-info">
+                <img src="assets/VONANA APP ICON.png" class="author-avatar" alt="Author">
+                <div class="author-meta">
+                  <h4>Alves King <i class="ri-checkbox-circle-fill verified-icon"></i></h4>
+                  <div class="post-time">
+                    <span>Há 15 minutos</span> • <span class="location-chip">📍 Maputo, Baixa</span>
+                  </div>
+                </div>
+              </div>
+              <button class="icon-btn" style="width: 32px; height: 32px;"><i class="ri-more-fill"></i></button>
+            </div>
+            
+            <div class="post-body">
+              Lançámos oficialmente o módulo completo de **Mercado & Lojas Unificadas** e **Grupos & Páginas Oficiais** no VONANA! Agora podes pesquisar produtos por entidades (Lojas, Serviços e Particulares) com categorias personalizadas. 🇲🇿🚀
+            </div>
+
+            <div class="post-image-container">
+              <img src="assets/hero_banner.jpg" alt="Post Image">
+            </div>
+
+            <div class="post-stats">
+              <span><i class="ri-heart-fill" style="color: var(--primary);"></i> 640 Gostos</span>
+              <span>128 Comentários • 82 Partilhas</span>
+            </div>
+
+            <div class="post-actions">
+              <button class="action-btn like-btn"><i class="ri-heart-line"></i> Curtir (<span class="like-count">640</span>)</button>
+              <button class="action-btn"><i class="ri-chat-3-line"></i> Comentar</button>
+              <button class="action-btn"><i class="ri-share-forward-line"></i> Partilhar</button>
+            </div>
+          </article>
+
+        </main>
+
+        <!-- Right Trending Sidebar -->
+        <aside class="feed-right-sidebar">
+          <div class="sidebar-widget">
+            <div class="widget-title">
+              <span>Tendências em Moçambique</span>
+              <a href="#" class="widget-link">Ver Tudo</a>
+            </div>
+            
+            <div class="trend-item">
+              <div>
+                <div class="trend-tag">#VONANA_Mercado</div>
+                <div class="trend-count">24.8k Anúncios</div>
+              </div>
+              <i class="ri-arrow-right-up-line" style="color: var(--primary);"></i>
+            </div>
+
+            <div class="trend-item">
+              <div>
+                <div class="trend-tag">#VendaDeCarrosMaputo</div>
+                <div class="trend-count">3.2k Automóveis</div>
+              </div>
+              <i class="ri-arrow-right-up-line" style="color: var(--primary);"></i>
+            </div>
+
+            <div class="trend-item">
+              <div>
+                <div class="trend-tag">#TerrenosBeira</div>
+                <div class="trend-count">1.4k Imóveis</div>
+              </div>
+              <i class="ri-arrow-right-up-line" style="color: var(--primary);"></i>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================================
+         PAGE 2: UNIFIED MERCADO & LOJAS HUB (#page-marketplace)
+         ========================================================================== -->
+    <section class="page-view" id="page-marketplace">
+      
+      <!-- Marketplace Header Banner -->
+      <div style="background: linear-gradient(135deg, rgba(5, 41, 168, 0.4), rgba(0, 180, 162, 0.25)); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 28px 32px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+            <span style="background: var(--primary); color: #000; font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 9999px;">
+              🇲🇿 MERCADO & SERVIÇOS PROFISSIONAIS
+            </span>
+            <span style="font-size: 12px; color: var(--text-muted);">Veículos • Imóveis • Serviços • Vestuário • Eletrónicos</span>
+          </div>
+          <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800;">Pesquise Produtos, Veículos, Imóveis & Serviços</h2>
+          <p style="font-size: 14px; color: var(--text-muted); max-width: 640px;">Filtros avançados especificamente adaptados para a sua pesquisa em Moçambique com M-Pesa & e-Mola.</p>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-primary" id="open-create-listing-btn-hub">
+            <i class="ri-add-circle-line"></i> Criar Anúncio Profissional
+          </button>
+        </div>
+      </div>
+
+      <!-- Advanced Filter Control Panel -->
+      <div class="market-filter-panel">
+        
+        <!-- Search & City Filter Bar -->
+        <div class="filter-bar-top">
+          <div class="search-wrapper" style="max-width: 100%;">
+            <i class="ri-search-2-line search-icon"></i>
+            <input type="text" class="search-input" id="market-search-input" placeholder="Pesquisar por palavra-chave (ex: Toyota Ractis 2020, Terreno Matola, T-Shirt XL)...">
+          </div>
+
+          <select class="form-select" id="market-city-filter" style="width: 220px;">
+            <option value="all">📍 Todas as Cidades</option>
+            <option value="Maputo">Maputo Cidade</option>
+            <option value="Matola">Matola</option>
+            <option value="Beira">Beira (Sofala)</option>
+            <option value="Nampula">Nampula</option>
+            <option value="Pemba">Pemba (Cabo Delgado)</option>
+            <option value="Tete">Tete</option>
+          </select>
+        </div>
+
+        <!-- Entity Type Filters (Lojas / Serviços / Particulares) -->
+        <div style="display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; align-items: center;">
+          <span style="font-size: 13px; font-weight: 700; color: var(--text-muted);">Tipo de Vendedor:</span>
+          <button class="cat-pill active" data-entity="all">🌐 Todos</button>
+          <button class="cat-pill" data-entity="shop">🏪 Lojas Oficiais Verificadas</button>
+          <button class="cat-pill" data-entity="service">🛠️ Prestadores de Serviços</button>
+          <button class="cat-pill" data-entity="individual">👤 Vendedores Particulares</button>
+        </div>
+
+        <!-- Main Categories Filter Pills -->
+        <div class="category-pills" id="main-category-pills">
+          <button class="cat-pill active" data-category="all"><i class="ri-grid-fill"></i> Todos</button>
+          <button class="cat-pill" data-category="auto"><i class="ri-car-fill"></i> Veículos & Carros</button>
+          <button class="cat-pill" data-category="property"><i class="ri-home-4-fill"></i> Imóveis & Terrenos</button>
+          <button class="cat-pill" data-category="services"><i class="ri-tools-fill"></i> Serviços & Reparações</button>
+          <button class="cat-pill" data-category="fashion"><i class="ri-shirt-fill"></i> Vestuário & Moda</button>
+          <button class="cat-pill" data-category="tech"><i class="ri-smartphone-fill"></i> Eletrónicos & Tech</button>
+        </div>
+
+        <!-- Dynamic Subcategory Pills Stream -->
+        <div class="subcategory-bar" id="subcategory-bar" style="display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; border-top: 1px dashed var(--border-color);">
+          <span style="font-size: 12px; color: var(--text-subtle); align-self: center;">Subcategorias:</span>
+          <button class="subcat-chip active" data-subcat="all">Todas as Subcategorias</button>
+        </div>
+
+      </div>
+
+      <!-- Product & Services Grid -->
+      <div class="product-grid" id="market-product-grid">
+        
+        <!-- Car Listing Item -->
+        <div class="product-card" data-category="auto" data-entity="shop" data-subcat="carros" data-title="Toyota Ractis Automatico 2020 Maputo" data-city="Maputo">
+          <div class="prod-img-wrap">
+            <span class="prod-badge-mpesa">M-PESA OK</span>
+            <span class="prod-entity-tag shop">🏪 LOJA OFICIAL</span>
+            <img src="assets/product_phone.jpg" alt="Car">
+          </div>
+          <div class="prod-details">
+            <h3 class="prod-title">Toyota Ractis 1.5 L (Ano 2020)</h3>
+            <div class="prod-price">380.000 MT</div>
+            
+            <div class="spec-badges-row">
+              <span class="spec-chip">📅 Ano: 2020</span>
+              <span class="spec-chip">🛣️ 45.000 km</span>
+              <span class="spec-chip">⛽ Gasolina</span>
+              <span class="spec-chip">🕹️ Automático</span>
+            </div>
+
+            <div class="prod-seller nav-item" data-page="shop" style="cursor: pointer;">
+              <span><i class="ri-checkbox-circle-fill verified-icon"></i> Matola Auto Motors</span>
+              <span>📍 Polana, Maputo</span>
+            </div>
+            <div class="prod-card-actions">
+              <button class="btn-chat-vendor btn-open-detail" data-item-id="car-1">
+                <i class="ri-eye-line"></i> Ver Detalhes
+              </button>
+              <button class="btn-primary btn-chat-trigger" style="padding: 8px 14px;">
+                <i class="ri-chat-3-line"></i> Chat
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property / Land Listing Item -->
+        <div class="product-card" data-category="property" data-entity="individual" data-subcat="terrenos" data-title="Terreno Espaçoso 30x40m com DUAT Matola" data-city="Matola">
+          <div class="prod-img-wrap">
+            <span class="prod-badge-mpesa" style="background: var(--emola-orange);">e-MOLA OK</span>
+            <span class="prod-entity-tag individual">👤 INDIVIDUAL</span>
+            <img src="assets/hero_banner.jpg" alt="Property">
+          </div>
+          <div class="prod-details">
+            <h3 class="prod-title">Terreno Espaçoso 30x40m com DUAT</h3>
+            <div class="prod-price">650.000 MT</div>
+            
+            <div class="spec-badges-row">
+              <span class="spec-chip">📐 Area: 1.200 m²</span>
+              <span class="spec-chip">📜 Título DUAT</span>
+              <span class="spec-chip">💧 Água & Luz</span>
+            </div>
+
+            <div class="prod-seller">
+              <span><i class="ri-user-3-line"></i> Fernando Mucavele</span>
+              <span>📍 Matola Rio</span>
+            </div>
+            <div class="prod-card-actions">
+              <button class="btn-chat-vendor btn-open-detail" data-item-id="prop-1">
+                <i class="ri-eye-line"></i> Ver Detalhes
+              </button>
+              <button class="btn-primary btn-chat-trigger" style="padding: 8px 14px;">
+                <i class="ri-chat-3-line"></i> Chat
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clothing Listing Item -->
+        <div class="product-card" data-category="fashion" data-entity="shop" data-subcat="roupas" data-title="Casaco de Inverno Silky Edition Tamanho XL" data-city="Beira">
+          <div class="prod-img-wrap">
+            <span class="prod-badge-mpesa">M-PESA OK</span>
+            <span class="prod-entity-tag shop">🏪 LOJA OFICIAL</span>
+            <img src="assets/product_phone.jpg" alt="Clothing">
+          </div>
+          <div class="prod-details">
+            <h3 class="prod-title">Casaco Silky Luxury Urban Edition</h3>
+            <div class="prod-price">3.200 MT</div>
+            
+            <div class="spec-badges-row">
+              <span class="spec-chip">📏 Tamanho: XL</span>
+              <span class="spec-chip">🎨 Cor: Preto Obsidian</span>
+              <span class="spec-chip">✨ Estado: Novo</span>
+            </div>
+
+            <div class="prod-seller nav-item" data-page="shop" style="cursor: pointer;">
+              <span><i class="ri-checkbox-circle-fill verified-icon"></i> Beira Fashion Store</span>
+              <span>📍 Beira</span>
+            </div>
+            <div class="prod-card-actions">
+              <button class="btn-chat-vendor btn-open-detail" data-item-id="fashion-1">
+                <i class="ri-eye-line"></i> Ver Detalhes
+              </button>
+              <button class="btn-primary btn-chat-trigger" style="padding: 8px 14px;">
+                <i class="ri-chat-3-line"></i> Chat
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Service Listing Item -->
+        <div class="product-card" data-category="services" data-entity="service" data-subcat="construcao" data-title="Serviço de Canalização e Electricidade 24h Maputo" data-city="Maputo">
+          <div class="prod-img-wrap">
+            <span class="prod-badge-mpesa">M-PESA OK</span>
+            <span class="prod-entity-tag service">🛠️ SERVIÇO TÉCNICO</span>
+            <img src="assets/hero_banner.jpg" alt="Service">
+          </div>
+          <div class="prod-details">
+            <h3 class="prod-title">Canalização & Manutenção Elétrica 24h</h3>
+            <div class="prod-price">1.500 MT / Hora</div>
+            
+            <div class="spec-badges-row">
+              <span class="spec-chip">⏱️ Atendimento 24/7</span>
+              <span class="spec-chip">🛡️ Garantia de Trabalho</span>
+            </div>
+
+            <div class="prod-seller">
+              <span><i class="ri-tools-fill" style="color: var(--primary);"></i> TecniMaputo Serviços</span>
+              <span>📍 Maputo & Matola</span>
+            </div>
+            <div class="prod-card-actions">
+              <button class="btn-chat-vendor btn-open-detail" data-item-id="serv-1">
+                <i class="ri-eye-line"></i> Ver Detalhes
+              </button>
+              <button class="btn-primary btn-chat-trigger" style="padding: 8px 14px;">
+                <i class="ri-chat-3-line"></i> Chat
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================================
+         PAGE 3: GRUPOS & PÁGINAS FULL ECOSYSTEM (#page-pages)
+         ========================================================================== -->
+    <section class="page-view" id="page-pages">
+      
+      <!-- Top Action Bar & Hub Switcher -->
+      <div style="background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="subtab-btn active" id="btn-tab-groups" style="font-size: 14px;">
+            <i class="ri-user-group-line" style="color: var(--primary);"></i> Grupos de Comunidade (3)
+          </button>
+          <button class="subtab-btn" id="btn-tab-official-pages" style="font-size: 14px;">
+            <i class="ri-flag-line" style="color: var(--accent-gold);"></i> Páginas Oficiais & ONGs (2)
+          </button>
+        </div>
+
+        <button class="btn-primary" id="open-create-group-modal-btn">
+          <i class="ri-add-circle-line"></i> Criar Grupo ou Página
+        </button>
+      </div>
+
+      <!-- SUB-VIEW 1: COMMUNITY GROUPS -->
+      <div id="subview-groups" class="subview-container active">
+        
+        <!-- Active Featured Group Inner View -->
+        <div class="group-inner-header" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 24px;">
+          <div style="height: 220px; position: relative;">
+            <img src="assets/hero_banner.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Group Cover">
+            <div class="cover-gradient-overlay"></div>
+            <span style="position: absolute; top: 16px; left: 16px; background: rgba(5,41,168,0.85); color: #fff; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 800;">
+              🔒 GRUPO PRIVADO VERIFICADO
+            </span>
+          </div>
+
+          <div style="padding: 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800;">Empreendedores de Maputo & Matola 🇲🇿</h2>
+              </div>
+              <p style="font-size: 14px; color: var(--text-muted); max-width: 680px; margin-bottom: 12px;">Rede oficial de apoio, oportunidades de negócio, parcerias e networking para fundadores e PMEs no sul de Moçambique.</p>
+              
+              <div style="display: flex; gap: 16px; font-size: 13px; color: var(--text-subtle);">
+                <span><i class="ri-user-line" style="color: var(--primary);"></i> 14.8k Membros</span>
+                <span><i class="ri-chat-history-line" style="color: var(--accent-green);"></i> 42 Publicações/dia</span>
+                <span><i class="ri-map-pin-line" style="color: var(--accent-gold);"></i> Maputo & Matola</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+              <button class="btn-primary" onclick="showToast('Já é membro deste grupo! 🤝')">
+                <i class="ri-checkbox-circle-line"></i> Membro Participante
+              </button>
+              <button class="btn-secondary" onclick="showToast('Link do Grupo copiado! 🔗')">
+                <i class="ri-share-line"></i> Convidar
+              </button>
+            </div>
+          </div>
+
+          <!-- Group Inner Tabs Switcher -->
+          <div class="profile-subtabs" style="border-top: 1px solid var(--border-color); background: var(--bg-surface);">
+            <button class="subtab-btn active" id="group-tab-feed">💬 Discussões / Feed</button>
+            <button class="subtab-btn" id="group-tab-about">ℹ️ Sobre & Regras</button>
+            <button class="subtab-btn" id="group-tab-members">👥 Membros (14.8k)</button>
+            <button class="subtab-btn" id="group-tab-files">📁 Ficheiros & Documentos</button>
+          </div>
+        </div>
+
+        <!-- Group Sub-Tab Content Stream -->
+        <div id="group-content-feed" class="group-tab-pane active" style="display: grid; grid-template-columns: 1fr 320px; gap: 24px;">
+          <div>
+            <div class="publisher-card">
+              <div class="publisher-top">
+                <img src="assets/VONANA APP ICON.png" style="width: 40px; height: 40px; border-radius: 50%;" alt="Avatar">
+                <input type="text" class="publisher-input" placeholder="Partilhe uma ideia ou questão no Grupo Empreendedores de Maputo...">
+              </div>
+              <div class="publisher-actions">
+                <div class="pub-tools">
+                  <button class="pub-btn"><i class="ri-image-add-line" style="color: var(--accent-green);"></i> Foto</button>
+                  <button class="pub-btn"><i class="ri-attachment-line" style="color: var(--primary);"></i> Documento PDF</button>
+                </div>
+                <button class="pub-submit-btn">Publicar no Grupo</button>
+              </div>
+            </div>
+
+            <article class="post-card">
+              <div class="post-header">
+                <div class="author-info">
+                  <img src="assets/VONANA ICON.png" class="author-avatar" alt="Avatar">
+                  <div class="author-meta">
+                    <h4>Sérgio Mabote <span style="font-size: 11px; color: var(--primary); background: rgba(0,180,162,0.15); padding: 2px 8px; border-radius: 9999px;">Administrador</span></h4>
+                    <div class="post-time"><span>Publicado há 2 horas</span> • <span class="location-chip">📍 Maputo</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="post-body">
+                Caros membros! Quinta-feira teremos o nosso workshop virtual sobre integração de M-Pesa para lojas no VONANA. Todos convidados! 🇲🇿🚀
+              </div>
+              <div class="post-actions">
+                <button class="action-btn like-btn"><i class="ri-heart-line"></i> Curtir (84)</button>
+                <button class="action-btn"><i class="ri-chat-3-line"></i> Responder (29)</button>
+              </div>
+            </article>
+          </div>
+
+          <aside>
+            <div class="sidebar-widget">
+              <div class="widget-title"><span>Regras da Comunidade</span></div>
+              <ol style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                <li style="margin-bottom: 8px;">Respeito mútuo entre empreendedores.</li>
+                <li style="margin-bottom: 8px;">Publicações de comércio devem conter preço em MZN.</li>
+                <li>Sem spam ou esquemas de pirâmide.</li>
+              </ol>
+            </div>
+
+            <div class="sidebar-widget">
+              <div class="widget-title"><span>Administradores & Moderadores</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                <img src="assets/VONANA ICON.png" style="width: 36px; height: 36px; border-radius: 50%;" alt="Admin">
+                <div>
+                  <div style="font-size: 13px; font-weight: 700;">Sérgio Mabote</div>
+                  <div style="font-size: 11px; color: var(--primary);">Criador do Grupo</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Recommended Groups Grid -->
+        <div style="margin-top: 40px;">
+          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; margin-bottom: 16px;">Outros Grupos Recomendados em Moçambique</h3>
+          <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+            
+            <div class="product-card" style="padding: 20px;">
+              <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+                <img src="assets/hero_banner.jpg" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover;" alt="Group">
+                <div>
+                  <h4 style="font-size: 16px; font-weight: 700;">Compra & Venda Beira & Sofala</h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">8.4k Membros • Mercado</span>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Comunidade aberta para negócios na região centro de Moçambique.</p>
+              <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="showToast('Aderiu ao Grupo! 🤝')">Aderir ao Grupo</button>
+            </div>
+
+            <div class="product-card" style="padding: 20px;">
+              <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+                <img src="assets/product_phone.jpg" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover;" alt="Group">
+                <div>
+                  <h4 style="font-size: 16px; font-weight: 700;">Desenvolvedores & Tech MZ</h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">6.2k Membros • Tecnologia</span>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Comunidade de programadores, designers e entusiastas de tecnologia em Moçambique.</p>
+              <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="showToast('Aderiu ao Grupo! 🤝')">Aderir ao Grupo</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SUB-VIEW 2: OFFICIAL PAGES -->
+      <div id="subview-pages" class="subview-container" style="display: none;">
+        
+        <div class="group-inner-header" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 24px;">
+          <div style="height: 220px; position: relative;">
+            <img src="assets/hero_banner.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Page Cover">
+            <div class="cover-gradient-overlay"></div>
+            <span class="brand-badge" style="position: absolute; top: 16px; left: 16px;">🇲🇿 PÁGINA INSTITUCIONAL VERIFICADA</span>
+          </div>
+
+          <div style="padding: 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+            <div>
+              <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800;">VONANA Comunidade Oficial <i class="ri-checkbox-circle-fill verified-icon"></i></h2>
+              <p style="font-size: 14px; color: var(--text-muted); max-width: 680px; margin-bottom: 12px;">Canal oficial de anúncios, actualizações da plataforma digital e suporte aos negócios em Moçambique.</p>
+              <div style="font-size: 13px; color: var(--primary); font-weight: 700;">📍 Sede Central: Av. 25 de Setembro, Maputo • 45.2k Seguidores</div>
+            </div>
+
+            <button class="btn-primary" onclick="showToast('Acompanhando VONANA Oficial! 🔔')">
+              <i class="ri-notification-3-line"></i> Acompanhar Canal
+            </button>
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; margin-bottom: 16px;">Outras Páginas Oficiais & ONGs</h3>
+        <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+          <div class="product-card" style="padding: 20px;">
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+              <img src="assets/VONANA LOGO.png" style="width: 48px; height: 48px; border-radius: 12px; object-fit: contain; background: var(--bg-surface); padding: 4px;" alt="Page">
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700;">Fundação Moçambique Digital <i class="ri-checkbox-circle-fill verified-icon"></i></h4>
+                <span style="font-size: 12px; color: var(--text-subtle);">32.1k Seguidores • ONG</span>
+              </div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Organização sem fins lucrativos promovendo a inclusão digital e alfabetização tecnológica.</p>
+            <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="showToast('Seguindo Página! 🔔')">Seguir Página</button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================================
+         PAGE 4: DEDICATED OFFICIAL SHOP VIEW (#page-shop)
+         ========================================================================== -->
+    <section class="page-view" id="page-shop">
+      <div class="profile-container">
+        <div class="profile-cover-banner">
+          <img src="assets/hero_banner.jpg" class="cover-img" alt="Shop Cover">
+        </div>
+        <div class="profile-header-content">
+          <div style="display: flex; align-items: flex-end; gap: 20px;">
+            <img src="assets/VONANA ICON.png" class="profile-main-avatar" alt="Shop Avatar">
+            <div class="profile-details">
+              <h2 style="font-size: 26px; font-weight: 800;">Loja Eletrónica Maputo <i class="ri-checkbox-circle-fill verified-icon"></i></h2>
+              <p class="profile-bio">Especialistas em Smartphones, Laptops, Fones sem Fios e Gadgets com garantia oficial. 🇲🇿📱</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5: CHAT VIEW -->
+    <section class="page-view" id="page-chat">
+      <div class="chat-container-layout">
+        <div class="chat-sidebar">
+          <div style="padding: 16px; border-bottom: 1px solid var(--border-color); font-weight: 800;">Mensagens</div>
+          <div class="conv-list">
+            <div class="conv-item active">
+              <img src="assets/VONANA APP ICON.png" style="width: 40px; height: 40px; border-radius: 50%;" alt="Avatar">
+              <div>
+                <div class="conv-name">Loja Tech Maputo</div>
+                <div class="conv-snippet">Sim, a viatura Ractis está disponível...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-main-panel">
+          <div class="chat-history-body" id="chat-history-body">
+            <div class="chat-msg-row received">
+              <div class="chat-bubble">Olá Alves! O produto que viu no Mercado está disponível.</div>
+            </div>
+          </div>
+          <div class="chat-input-bar">
+            <button class="icon-btn" id="chat-mic-voice-btn" title="Gravar Nota de Voz"><i class="ri-mic-line" style="color: var(--primary);"></i></button>
+            <input type="text" class="chat-input-field" id="chat-msg-input" placeholder="Escreva a sua mensagem ou envie nota de voz...">
+            <button class="btn-primary" id="chat-send-btn"><i class="ri-send-plane-fill"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 6: PROFILE VIEW -->
+    <section class="page-view" id="page-profile">
+      <div class="profile-container">
+        <div class="profile-cover-banner">
+          <img src="assets/hero_banner.jpg" class="cover-img" alt="Cover">
+        </div>
+        <div class="profile-header-content">
+          <div style="display: flex; align-items: flex-end; gap: 20px;">
+            <img src="assets/VONANA APP ICON.png" class="profile-main-avatar" alt="Avatar">
+            <div class="profile-details">
+              <h2 style="font-size: 26px; font-weight: 800;">Alves King <i class="ri-checkbox-circle-fill verified-icon"></i></h2>
+              <p class="profile-bio">Fundador & Desenvolvedor em Maputo, Moçambique. 🇲🇿</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 7: AUTH VIEW -->
+    <section class="page-view" id="page-auth">
+      <div style="max-width: 440px; margin: 40px auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px;">
+        <h3 style="font-family: var(--font-heading); font-size: 22px; font-weight: 800; margin-bottom: 12px; text-align: center;">Entrar no VONANA 🇲🇿</h3>
+        <form>
+          <div class="form-group">
+            <label class="form-label">Número de Telefone (+258)</label>
+            <input type="tel" class="form-input" value="+258 84 123 4567">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Palavra-passe</label>
+            <input type="password" class="form-input" value="••••••••">
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Entrar</button>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- ALL MODALS (EDIT PROFILE, LISTING BUILDER, CREATE GROUP/PAGE, SINGLE PRODUCT) -->
+    <div class="modal-overlay" id="edit-profile-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Editar Perfil</h3>
+          <button class="modal-close-btn" id="close-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <form id="edit-profile-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Nome Completo</label>
+              <input type="text" class="form-input" id="edit-name-input" value="Alves King">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: CREATE NEW GROUP OR OFFICIAL PAGE -->
+    <div class="modal-overlay" id="create-page-group-modal">
+      <div class="modal-card" style="max-width: 680px;">
+        <div class="modal-header">
+          <h3><i class="ri-community-line" style="color: var(--primary);"></i> Criar Grupo de Comunidade ou Página Oficial</h3>
+          <button class="modal-close-btn" id="close-group-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <form id="create-group-form">
+          <div class="modal-body">
+            
+            <div class="form-group">
+              <label class="form-label">Tipo de Entidade</label>
+              <select class="form-select" id="create-entity-type-select">
+                <option value="group">👥 Grupo de Comunidade (Privado ou Público)</option>
+                <option value="page">🚩 Página Oficial de Empresa / ONG / Instituição</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Nome do Grupo ou Página</label>
+              <input type="text" class="form-input" placeholder="ex: Empreendedores da Beira, Loja Tech Oficial..." required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Privacidade / Acesso</label>
+                <select class="form-select">
+                  <option value="public">🌐 Público (Qualquer utilizador pode aderir)</option>
+                  <option value="private">🔒 Privado (Aprovação de Administrador)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Cidade / Região</label>
+                <select class="form-select">
+                  <option value="Maputo">Maputo</option>
+                  <option value="Matola">Matola</option>
+                  <option value="Beira">Beira</option>
+                  <option value="Nampula">Nampula</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Descrição / Objectivos da Comunidade</label>
+              <textarea class="form-textarea" rows="3" placeholder="Descreva os tópicos de discussão, regras e propósito..."></textarea>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" id="cancel-group-modal-btn">Cancelar</button>
+            <button type="submit" class="btn-primary">Criar Comunidade</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: DYNAMIC CATEGORY LISTING BUILDER -->
+    <div class="modal-overlay" id="create-listing-modal">
+      <div class="modal-card" style="max-width: 720px;">
+        <div class="modal-header">
+          <h3>Criar Anúncio Profissional</h3>
+          <button class="modal-close-btn" id="close-listing-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <form id="create-listing-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Categoria</label>
+              <select class="form-select" id="listing-category-select">
+                <option value="auto">🚗 Veículo (Carros, Motores)</option>
+                <option value="property">🏠 Imóvel / Terreno (Casas, Terrenos)</option>
+                <option value="fashion">👗 Vestuário & Moda</option>
+                <option value="services">🛠️ Serviço Profissional</option>
+              </select>
+            </div>
+            <div id="dynamic-category-fields"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn-primary">Publicar Anúncio</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: M-PESA & e-MOLA PAYMENT GATEWAY SIMULATOR -->
+    <div class="modal-overlay" id="mpesa-pay-modal">
+      <div class="modal-card" style="max-width: 520px;">
+        <div class="modal-header" style="background: linear-gradient(135deg, rgba(230,0,0,0.15), rgba(0,180,162,0.15));">
+          <h3><i class="ri-smartphone-line" style="color: var(--mpesa-red);"></i> Pagamento M-Pesa / e-Mola</h3>
+          <button class="modal-close-btn" id="close-mpesa-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <form id="mpesa-pay-form">
+          <div class="modal-body">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <span class="pay-badge mpesa" style="font-size: 13px; padding: 6px 16px; margin-right: 6px;">M-PESA VODACOM</span>
+              <span class="pay-badge emola" style="font-size: 13px; padding: 6px 16px;">e-MOLA MOVITEL</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Serviço / Produto</label>
+              <input type="text" class="form-input" id="mpesa-service-name" value="Boost de Anúncio no Feed VONANA (30 Dias)" readonly>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Valor (Meticais MZN)</label>
+                <input type="number" class="form-input" id="mpesa-amount-input" value="500" readonly style="color: var(--primary); font-weight: 800; font-size: 18px;">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Número de Telefone (+258)</label>
+                <input type="tel" class="form-input" id="mpesa-phone-input" value="+258 84 123 4567" required>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-surface); padding: 14px; border-radius: var(--radius-md); border: 1px dashed var(--border-color); font-size: 12px; color: var(--text-subtle); line-height: 1.6;">
+              📱 <strong style="color: var(--text-main);">Como funciona:</strong> Ao clicar em <strong style="color: var(--mpesa-red);">Pagar com M-Pesa</strong>, receberá um pedido de confirmação no seu telemóvel para introduzir o PIN M-Pesa.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" id="cancel-mpesa-modal-btn">Cancelar</button>
+            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, var(--mpesa-red), #B30000);">
+              <i class="ri-flashlight-fill"></i> Pagar com M-Pesa
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: SINGLE PRODUCT OVERLAY -->
+    <div class="modal-overlay" id="single-product-modal">
+      <div class="modal-card" style="max-width: 860px;">
+        <div class="modal-header">
+          <h3 id="single-detail-title">Detalhes do Item</h3>
+          <button class="modal-close-btn" id="close-detail-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <div class="modal-body" id="single-detail-body"></div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- ==========================================================================
+       FOOTER COMPONENT (ALIGNED MULTI-COLUMN WITH ENLARGED LEFT-ALIGNED LOGO)
+       ========================================================================== -->
+  <footer class="vonana-footer">
+    <div class="footer-container">
+      
+      <div class="footer-brand-col">
+        <a href="#" class="brand-logo-link" style="display: block; text-align: left;">
+          <img src="assets/VONANA LOGO.png" alt="VONANA Logo" class="footer-brand-logo">
+        </a>
+        <p class="footer-bio">A plataforma digital de Moçambique que une redes sociais, comércio unificado e mensagens instantâneas com máxima fluidez.</p>
+        
+        <div class="payment-badges-row">
+          <span class="pay-badge mpesa"><i class="ri-smartphone-line"></i> M-PESA</span>
+          <span class="pay-badge emola"><i class="ri-flashlight-fill"></i> e-MOLA</span>
+          <span class="pay-badge mkesh"><i class="ri-bank-card-line"></i> mKESH</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Plataforma</h4>
+        <ul>
+          <li><a href="#" class="nav-item" data-page="feed"><i class="ri-compass-3-line"></i> Linha do Tempo</a></li>
+          <li><a href="#" class="nav-item" data-page="marketplace"><i class="ri-store-3-line"></i> Mercado & Lojas</a></li>
+          <li><a href="#" class="nav-item" data-page="shop"><i class="ri-store-2-line"></i> Lojas Verificadas</a></li>
+          <li><a href="#" class="nav-item" data-page="chat"><i class="ri-chat-3-line"></i> Mensagens Instantâneas</a></li>
+          <li><a href="#" class="nav-item" data-page="pages"><i class="ri-community-line"></i> Grupos & Páginas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Conta & Negócios</h4>
+        <ul>
+          <li><a href="#" class="nav-item" data-page="profile"><i class="ri-user-3-line"></i> Meu Perfil</a></li>
+          <li><a href="#" onclick="document.getElementById('open-edit-profile-btn').click(); return false;"><i class="ri-edit-line"></i> Editar Perfil</a></li>
+          <li><a href="#" id="footer-open-listing-btn"><i class="ri-price-tag-3-line"></i> Criar Anúncio Profissional</a></li>
+          <li><a href="#" class="nav-item" data-page="auth"><i class="ri-key-2-line"></i> Entrar / Criar Conta</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Suporte</h4>
+        <ul>
+          <li><a href="#" class="nav-item" data-page="terms"><i class="ri-file-text-line"></i> Termos de Serviço</a></li>
+          <li><a href="#" class="nav-item" data-page="terms"><i class="ri-shield-keyhole-line"></i> Política de Privacidade</a></li>
+          <li><a href="#"><i class="ri-lock-password-line"></i> Segurança M-Pesa</a></li>
+          <li><a href="#"><i class="ri-customer-service-2-line"></i> Suporte ao Cliente MZ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-lang-col">
+        <h4>Idioma / Language</h4>
+        <p style="font-size: 12px; color: var(--text-subtle); margin-bottom: 12px;">Selecione o seu idioma preferido:</p>
+        
+        <div class="lang-selector-box">
+          <i class="ri-global-line lang-icon"></i>
+          <select id="language-switcher-select" class="lang-select">
+            <option value="pt-MZ" selected>🇲ℤ Português (Moçambique)</option>
+            <option value="en-US">🇬🇧 English (International)</option>
+            <option value="fr-FR">🇫🇷 Français (French)</option>
+          </select>
+        </div>
+
+        <div style="font-size: 11px; color: var(--text-subtle); margin-top: 14px;">
+          Servidor Regional: <span style="color: var(--primary); font-weight: 700;">Maputo, MZ</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span>© 2026 VONANA - Todos os direitos reservados em Moçambique.</span>
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <a href="#" class="nav-item" data-page="terms">Termos</a>
+        <span>•</span>
+        <a href="#" class="nav-item" data-page="terms">Privacidade</a>
+        <span>•</span>
+        <span id="current-lang-indicator" style="color: var(--primary); font-weight: 700;">🇲🇿 Português</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application JS -->
+  <script src="app.js"></script>
+</body>
+</html>
