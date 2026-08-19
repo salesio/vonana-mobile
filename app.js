@@ -671,3 +671,29 @@ function initMobileBottomNav() {
     });
   });
 }
+
+/* --------------------------------------------------------------------------
+   14. Mobile Chat Navigation
+   -------------------------------------------------------------------------- */
+function openChatMobile(chatName) {
+  const layout = document.getElementById('main-chat-layout');
+  if (layout) {
+    layout.classList.add('mobile-chat-open');
+  }
+  const nameEl = document.getElementById('active-chat-name');
+  if (nameEl && chatName) {
+    nameEl.textContent = chatName;
+  }
+  const history = document.getElementById('chat-history-body');
+  if (history) {
+    history.innerHTML = `<div class="chat-msg-row received"><div class="chat-bubble">Olá! Como estás? ??</div><div class="msg-meta"><span>Agora mesmo</span></div></div>`;
+  }
+}
+
+function closeChatMobile() {
+  const layout = document.getElementById('main-chat-layout');
+  if (layout) {
+    layout.classList.remove('mobile-chat-open');
+  }
+}
+

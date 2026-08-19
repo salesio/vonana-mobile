@@ -746,3 +746,287 @@ html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
 .feed-main-col, .market-filter-panel, .group-inner-header { min-width: 0; max-width: 100vw; overflow-x: hidden; }
 .stories-bar, .category-pills, .profile-subtabs, .subcategory-bar { max-width: 100%; }
 
+/* ==========================================================================
+   ENHANCED CHAT & CONNECT HUB STYLES
+   ========================================================================== */
+
+/* Layout & Sidebar Updates */
+#main-chat-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 0;
+  height: calc(100vh - 160px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.chat-sidebar {
+  border-right: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.chat-hub-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: var(--bg-surface);
+  z-index: 10;
+}
+
+.chat-section-title {
+  padding: 16px 16px 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Active Users Horizontal Scroll */
+.active-users-scroll {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 12px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid var(--border-color);
+}
+.active-users-scroll::-webkit-scrollbar { display: none; }
+
+.active-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 56px;
+}
+.active-user span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.active-avatar-wrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+.active-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+  padding: 2px;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-surface);
+}
+.status-dot.online { background: #10b981; }
+.status-dot.busy { background: #f59e0b; }
+.status-dot.offline { background: #9ca3af; }
+
+/* Enhanced Conversation List */
+.conv-item {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: var(--transition-silk);
+  position: relative;
+}
+.conv-item:hover, .conv-item.active {
+  background: var(--bg-hover);
+}
+.conv-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.conv-info {
+  flex: 1;
+  min-width: 0;
+}
+.conv-name {
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+.conv-time {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.conv-snippet {
+  font-size: 13px;
+  color: var(--text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.unread-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  position: absolute;
+  right: 16px;
+  top: 36px;
+}
+
+/* Friend Suggestions (Youth/School) */
+.friend-suggestions-list {
+  padding: 0 16px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.friend-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-hover);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+.friend-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+}
+.friend-details {
+  flex: 1;
+  min-width: 0;
+}
+.friend-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+.friend-school {
+  font-size: 11px;
+  color: var(--text-subtle);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.friend-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.f-tag {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.btn-add-friend {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(0, 180, 162, 0.1);
+  color: var(--primary);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: var(--transition-silk);
+}
+.btn-add-friend.added {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+/* Chat Main Panel Enhancements */
+.chat-main-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-main);
+}
+
+.chat-panel-header {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+.mobile-back-btn {
+  display: none;
+}
+
+.msg-meta {
+  font-size: 10px;
+  color: var(--text-subtle);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Mobile & Responsive Logic */
+@media (max-width: 768px) {
+  #main-chat-layout {
+    grid-template-columns: 1fr;
+    height: calc(100vh - 120px);
+    border: none;
+    border-radius: 0;
+  }
+  
+  /* By default on mobile, show HUB, hide PANEL */
+  #main-chat-layout.mobile-chat-open #chat-hub-sidebar {
+    display: none;
+  }
+  
+  #chat-conversation-panel {
+    display: none;
+  }
+  #main-chat-layout.mobile-chat-open #chat-conversation-panel {
+    display: flex;
+  }
+
+  .mobile-back-btn {
+    display: flex;
+    margin-right: 8px;
+  }
+}
