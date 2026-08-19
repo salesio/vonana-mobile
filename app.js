@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPagesAndGroupsTabs();
   initChatSimulator();
   initPostLikeCounters();
+  initMobileBottomNav();
   initMpesaPaymentModal();
   initVoiceNoteRecorder();
 });
@@ -477,7 +478,7 @@ function showToast(message) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'vonana-toast';
-    toast.style.cssText = `position: fixed; bottom: 24px; right: 24px; z-index: 10000; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-full); font-size: 13px; font-weight: 700; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 10px; animation: fadeInSilk 0.3s ease;`;
+    toast.style.cssText = `position: fixed; bottom: 80px; left: 12px; right: 12px; z-index: 10000; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-full); font-size: 13px; font-weight: 700; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; gap: 10px; animation: fadeInSilk 0.3s ease;`;
     document.body.appendChild(toast);
   }
   toast.innerHTML = `<i class="ri-checkbox-circle-fill" style="color: var(--primary);"></i> ${message}`;
@@ -612,4 +613,61 @@ function initVoiceNoteRecorder() {
   if (pubVoiceBtn) {
     pubVoiceBtn.addEventListener('click', () => handleVoiceRecord('pub'));
   }
+}
+
+/* --------------------------------------------------------------------------
+   13. Mobile Bottom Navigation Handler
+   -------------------------------------------------------------------------- */
+function initMobileBottomNav() {
+  const mobileNav = document.getElementById('mobile-bottom-nav');
+  if (!mobileNav) return;
+
+  const mobileNavItems = mobileNav.querySelectorAll('.mobile-nav-item');
+  const pageViews = document.querySelectorAll('.page-view');
+
+  mobileNavItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const targetPageId = item.getAttribute('data-page');
+      if (!targetPageId) return;
+
+      // Update mobile nav active state
+      mobileNavItems.forEach(nav => nav.classList.remove('active'));
+      item.classList.add('active');
+
+      // Update desktop nav active state
+      document.querySelectorAll('#main-nav .nav-item').forEach(nav => {
+        if (nav.getAttribute('data-page') === targetPageId) {
+          nav.classList.add('active');
+        } else {
+          nav.classList.remove('active');
+        }
+      });
+
+      // Switch page views
+      pageViews.forEach(view => {
+        if (view.id === `page-${targetPageId}`) {
+          view.classList.add('active');
+        } else {
+          view.classList.remove('active');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Sync mobile nav when desktop nav is clicked
+  document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+    item.addEventListener('click', () => {
+      const targetPageId = item.getAttribute('data-page');
+      if (!targetPageId) return;
+      mobileNavItems.forEach(nav => {
+        if (nav.getAttribute('data-page') === targetPageId) {
+          nav.classList.add('active');
+        } else {
+          nav.classList.remove('active');
+        }
+      });
+    });
+  });
 }
