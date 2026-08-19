@@ -697,3 +697,29 @@ function closeChatMobile() {
   }
 }
 
+
+/* --------------------------------------------------------------------------
+   15. Group Inner Tabs Logic
+   -------------------------------------------------------------------------- */
+function initGroupInnerTabs() {
+  const tabs = document.querySelectorAll('.subtab-btn[data-group-tab]');
+  const panes = document.querySelectorAll('.group-tab-pane');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.getAttribute('data-group-tab');
+      panes.forEach(pane => {
+        if (pane.id === 'group-content-' + target) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  initGroupInnerTabs();
+});
+

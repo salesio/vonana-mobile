@@ -471,8 +471,8 @@
     <section class="page-view" id="page-pages">
       
       <!-- Top Action Bar & Hub Switcher -->
-      <div style="background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <div class="groups-top-bar">
+        <div class="groups-tabs-wrap">
           <button class="subtab-btn active" id="btn-tab-groups" style="font-size: 14px;">
             <i class="ri-user-group-line" style="color: var(--primary);"></i> Grupos de Comunidade (3)
           </button>
@@ -491,7 +491,7 @@
         
         <!-- Active Featured Group Inner View -->
         <div class="group-inner-header" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 24px;">
-          <div style="height: 220px; position: relative;">
+          <div class="group-cover-wrap">
             <img src="assets/hero_banner.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Group Cover">
             <div class="cover-gradient-overlay"></div>
             <span style="position: absolute; top: 16px; left: 16px; background: rgba(5,41,168,0.85); color: #fff; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 800;">
@@ -499,23 +499,23 @@
             </span>
           </div>
 
-          <div style="padding: 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+          <div class="group-info-wrap">
             <div>
-              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
-                <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800;">Empreendedores de Maputo & Matola 🇲🇿</h2>
+              <div class="group-title-row">
+                <h2>Empreendedores de Maputo & Matola 🇲🇿</h2>
               </div>
-              <p style="font-size: 14px; color: var(--text-muted); max-width: 680px; margin-bottom: 12px;">Rede oficial de apoio, oportunidades de negócio, parcerias e networking para fundadores e PMEs no sul de Moçambique.</p>
+              <p class="group-desc">Rede oficial de apoio, oportunidades de negócio, parcerias e networking para fundadores e PMEs no sul de Moçambique.</p>
               
-              <div style="display: flex; gap: 16px; font-size: 13px; color: var(--text-subtle);">
+              <div class="group-stats">
                 <span><i class="ri-user-line" style="color: var(--primary);"></i> 14.8k Membros</span>
                 <span><i class="ri-chat-history-line" style="color: var(--accent-green);"></i> 42 Publicações/dia</span>
                 <span><i class="ri-map-pin-line" style="color: var(--accent-gold);"></i> Maputo & Matola</span>
               </div>
             </div>
 
-            <div style="display: flex; gap: 10px;">
-              <button class="btn-primary" onclick="showToast('Já é membro deste grupo! 🤝')">
-                <i class="ri-checkbox-circle-line"></i> Membro Participante
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn-primary" id="btn-join-group" onclick="this.innerHTML='<i class=\'ri-checkbox-circle-line\'></i> Membro Participante'; showToast('Já é membro deste grupo! 🤝')">
+                <i class="ri-user-add-line"></i> Juntar-se ao Grupo
               </button>
               <button class="btn-secondary" onclick="showToast('Link do Grupo copiado! 🔗')">
                 <i class="ri-share-line"></i> Convidar
@@ -525,125 +525,175 @@
 
           <!-- Group Inner Tabs Switcher -->
           <div class="profile-subtabs" style="border-top: 1px solid var(--border-color); background: var(--bg-surface);">
-            <button class="subtab-btn active" id="group-tab-feed">💬 Discussões / Feed</button>
-            <button class="subtab-btn" id="group-tab-about">ℹ️ Sobre & Regras</button>
-            <button class="subtab-btn" id="group-tab-members">👥 Membros (14.8k)</button>
-            <button class="subtab-btn" id="group-tab-files">📁 Ficheiros & Documentos</button>
+            <button class="subtab-btn active" data-group-tab="feed">💬 Discussões / Feed</button>
+            <button class="subtab-btn" data-group-tab="about">ℹ️ Sobre & Regras</button>
+            <button class="subtab-btn" data-group-tab="members">👥 Membros (14.8k)</button>
+            <button class="subtab-btn" data-group-tab="files">📁 Ficheiros & Docs</button>
           </div>
         </div>
 
-        <!-- Group Sub-Tab Content Stream -->
-        <div id="group-content-feed" class="group-tab-pane active" style="display: grid; grid-template-columns: 1fr 320px; gap: 24px;">
-          <div>
-            <div class="publisher-card">
-              <div class="publisher-top">
-                <img src="assets/VONANA APP ICON.png" style="width: 40px; height: 40px; border-radius: 50%;" alt="Avatar">
-                <input type="text" class="publisher-input" placeholder="Partilhe uma ideia ou questão no Grupo Empreendedores de Maputo...">
-              </div>
-              <div class="publisher-actions">
-                <div class="pub-tools">
-                  <button class="pub-btn"><i class="ri-image-add-line" style="color: var(--accent-green);"></i> Foto</button>
-                  <button class="pub-btn"><i class="ri-attachment-line" style="color: var(--primary);"></i> Documento PDF</button>
+        <!-- Group Sub-Tab Content Streams -->
+        
+        <!-- FEED TAB -->
+        <div id="group-content-feed" class="group-tab-pane active">
+          <!-- The Feed Layout (2 cols on desktop, 1 on mobile) -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+            <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 24px;">
+              <div class="publisher-card">
+                <div class="publisher-top">
+                  <img src="assets/VONANA APP ICON.png" style="width: 40px; height: 40px; border-radius: 50%;" alt="Avatar">
+                  <input type="text" class="publisher-input" placeholder="Partilhe uma ideia ou questão no Grupo...">
                 </div>
-                <button class="pub-submit-btn">Publicar no Grupo</button>
+                <div class="publisher-actions">
+                  <div class="pub-tools">
+                    <button class="pub-btn"><i class="ri-image-add-line" style="color: var(--accent-green);"></i> Foto</button>
+                    <button class="pub-btn"><i class="ri-attachment-line" style="color: var(--primary);"></i> Documento PDF</button>
+                  </div>
+                  <button class="pub-submit-btn" onclick="showToast('Publicação enviada para o Grupo!')">Publicar</button>
+                </div>
               </div>
-            </div>
 
-            <article class="post-card">
-              <div class="post-header">
-                <div class="author-info">
-                  <img src="assets/VONANA ICON.png" class="author-avatar" alt="Avatar">
-                  <div class="author-meta">
-                    <h4>Sérgio Mabote <span style="font-size: 11px; color: var(--primary); background: rgba(0,180,162,0.15); padding: 2px 8px; border-radius: 9999px;">Administrador</span></h4>
-                    <div class="post-time"><span>Publicado há 2 horas</span> • <span class="location-chip">📍 Maputo</span></div>
+              <article class="post-card">
+                <div class="post-header">
+                  <div class="author-info">
+                    <img src="assets/VONANA ICON.png" class="author-avatar" alt="Avatar">
+                    <div class="author-meta">
+                      <h4>Sérgio Mabote <span style="font-size: 11px; color: var(--primary); background: rgba(0,180,162,0.15); padding: 2px 8px; border-radius: 9999px;">Administrador</span></h4>
+                      <div class="post-time"><span>Publicado há 2 horas</span> • <span class="location-chip">📍 Maputo</span></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="post-body">
-                Caros membros! Quinta-feira teremos o nosso workshop virtual sobre integração de M-Pesa para lojas no VONANA. Todos convidados! 🇲🇿🚀
-              </div>
-              <div class="post-actions">
-                <button class="action-btn like-btn"><i class="ri-heart-line"></i> Curtir (84)</button>
-                <button class="action-btn"><i class="ri-chat-3-line"></i> Responder (29)</button>
-              </div>
-            </article>
-          </div>
-
-          <aside>
-            <div class="sidebar-widget">
-              <div class="widget-title"><span>Regras da Comunidade</span></div>
-              <ol style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
-                <li style="margin-bottom: 8px;">Respeito mútuo entre empreendedores.</li>
-                <li style="margin-bottom: 8px;">Publicações de comércio devem conter preço em MZN.</li>
-                <li>Sem spam ou esquemas de pirâmide.</li>
-              </ol>
-            </div>
-
-            <div class="sidebar-widget">
-              <div class="widget-title"><span>Administradores & Moderadores</span></div>
-              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                <img src="assets/VONANA ICON.png" style="width: 36px; height: 36px; border-radius: 50%;" alt="Admin">
-                <div>
-                  <div style="font-size: 13px; font-weight: 700;">Sérgio Mabote</div>
-                  <div style="font-size: 11px; color: var(--primary);">Criador do Grupo</div>
+                <div class="post-body">
+                  Caros membros! Quinta-feira teremos o nosso workshop virtual sobre integração de M-Pesa para lojas no VONANA. Todos convidados! 🇲🇿🚀
                 </div>
-              </div>
+                <div class="post-actions">
+                  <button class="action-btn like-btn"><i class="ri-heart-line"></i> Curtir (84)</button>
+                  <button class="action-btn"><i class="ri-chat-3-line"></i> Responder (29)</button>
+                </div>
+              </article>
             </div>
-          </aside>
+          </div>
         </div>
 
-        <!-- Recommended Groups Grid -->
-        <div style="margin-top: 40px;">
-          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; margin-bottom: 16px;">Outros Grupos Recomendados em Moçambique</h3>
-          <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+        <!-- ABOUT TAB -->
+        <div id="group-content-about" class="group-tab-pane">
+          <div class="post-card" style="padding: 24px;">
+            <h3 style="font-weight: 700; margin-bottom: 16px;">Sobre o Grupo</h3>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px;">
+              Este é o grupo oficial para todos os empreendedores, inovadores e donos de PMEs de Maputo e Matola.
+              O objetivo principal é a partilha de oportunidades, networking e auxílio mútuo no crescimento dos negócios locais.
+            </p>
             
-            <div class="product-card" style="padding: 20px;">
-              <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
-                <img src="assets/hero_banner.jpg" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover;" alt="Group">
-                <div>
-                  <h4 style="font-size: 16px; font-weight: 700;">Compra & Venda Beira & Sofala</h4>
-                  <span style="font-size: 12px; color: var(--text-subtle);">8.4k Membros • Mercado</span>
-                </div>
-              </div>
-              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Comunidade aberta para negócios na região centro de Moçambique.</p>
-              <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="showToast('Aderiu ao Grupo! 🤝')">Aderir ao Grupo</button>
-            </div>
-
-            <div class="product-card" style="padding: 20px;">
-              <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
-                <img src="assets/product_phone.jpg" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover;" alt="Group">
-                <div>
-                  <h4 style="font-size: 16px; font-weight: 700;">Desenvolvedores & Tech MZ</h4>
-                  <span style="font-size: 12px; color: var(--text-subtle);">6.2k Membros • Tecnologia</span>
-                </div>
-              </div>
-              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Comunidade de programadores, designers e entusiastas de tecnologia em Moçambique.</p>
-              <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="showToast('Aderiu ao Grupo! 🤝')">Aderir ao Grupo</button>
-            </div>
-
+            <h3 style="font-weight: 700; margin-bottom: 16px;">Regras da Comunidade</h3>
+            <ol style="font-size: 14px; color: var(--text-muted); padding-left: 20px; line-height: 1.8;">
+              <li>Respeito mútuo entre empreendedores. Sem discurso de ódio.</li>
+              <li>Publicações de comércio devem conter o preço em MZN (Meticais).</li>
+              <li>É expressamente proibido spam ou partilha de esquemas de pirâmide.</li>
+              <li>Apoie os negócios locais sempre que possível.</li>
+            </ol>
           </div>
         </div>
 
+        <!-- MEMBERS TAB -->
+        <div id="group-content-members" class="group-tab-pane">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden;">
+            <div class="member-list-item">
+              <div class="member-info">
+                <img src="assets/VONANA ICON.png" alt="Admin">
+                <div>
+                  <h4 style="font-weight: 700; font-size: 14px;">Sérgio Mabote <span style="font-size: 10px; color: var(--primary); background: rgba(0,180,162,0.15); padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Admin</span></h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">Maputo, Moçambique</span>
+                </div>
+              </div>
+              <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Mensagem</button>
+            </div>
+            <div class="member-list-item">
+              <div class="member-info">
+                <img src="assets/product_phone.jpg" alt="Member">
+                <div>
+                  <h4 style="font-weight: 700; font-size: 14px;">Joana Chipande</h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">Matola Rio</span>
+                </div>
+              </div>
+              <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Adicionar</button>
+            </div>
+            <div class="member-list-item">
+              <div class="member-info">
+                <img src="assets/hero_banner.jpg" alt="Member">
+                <div>
+                  <h4 style="font-weight: 700; font-size: 14px;">Ricardo Matsinhe</h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">Maputo Cidade</span>
+                </div>
+              </div>
+              <button class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Adicionar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILES TAB -->
+        <div id="group-content-files" class="group-tab-pane">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden;">
+            <div class="file-list-item">
+              <div class="file-info">
+                <div class="file-icon"><i class="ri-file-pdf-2-line"></i></div>
+                <div>
+                  <h4 style="font-weight: 700; font-size: 14px;">Guia_Integracao_MPesa_VONANA.pdf</h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">Adicionado por Sérgio Mabote • 2.4 MB • Ontem</span>
+                </div>
+              </div>
+              <button class="icon-btn"><i class="ri-download-2-line"></i></button>
+            </div>
+            <div class="file-list-item">
+              <div class="file-info">
+                <div class="file-icon" style="color: var(--accent-gold); background: rgba(245,158,11,0.1);"><i class="ri-file-excel-2-line"></i></div>
+                <div>
+                  <h4 style="font-weight: 700; font-size: 14px;">Template_Contabilidade_PME.xlsx</h4>
+                  <span style="font-size: 12px; color: var(--text-subtle);">Adicionado por Joana Chipande • 840 KB • 12 Jun</span>
+                </div>
+              </div>
+              <button class="icon-btn"><i class="ri-download-2-line"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 800; margin: 32px 0 16px 0;">Outros Grupos para Explorar</h3>
+        <div class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+          
+          <div class="product-card" style="padding: 20px;">
+            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+              <img src="assets/product_phone.jpg" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover;" alt="Group">
+              <div>
+                <h4 style="font-size: 16px; font-weight: 700;">Desenvolvedores & Tech MZ</h4>
+                <span style="font-size: 12px; color: var(--text-subtle);">6.2k Membros • Tecnologia</span>
+              </div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Comunidade de programadores, designers e entusiastas de tecnologia em Moçambique.</p>
+            <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="this.innerHTML='Aderido ✅'; this.classList.remove('btn-secondary'); this.classList.add('btn-primary'); showToast('Aderiu ao Grupo! 🤝')">Aderir ao Grupo</button>
+          </div>
+
+        </div>
       </div>
 
       <!-- SUB-VIEW 2: OFFICIAL PAGES -->
       <div id="subview-pages" class="subview-container" style="display: none;">
         
         <div class="group-inner-header" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 24px;">
-          <div style="height: 220px; position: relative;">
+          <div class="group-cover-wrap">
             <img src="assets/hero_banner.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Page Cover">
             <div class="cover-gradient-overlay"></div>
             <span class="brand-badge" style="position: absolute; top: 16px; left: 16px;">🇲🇿 PÁGINA INSTITUCIONAL VERIFICADA</span>
           </div>
 
-          <div style="padding: 24px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+          <div class="group-info-wrap">
             <div>
-              <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800;">VONANA Comunidade Oficial <i class="ri-checkbox-circle-fill verified-icon"></i></h2>
-              <p style="font-size: 14px; color: var(--text-muted); max-width: 680px; margin-bottom: 12px;">Canal oficial de anúncios, actualizações da plataforma digital e suporte aos negócios em Moçambique.</p>
+              <div class="group-title-row">
+                <h2>VONANA Comunidade Oficial <i class="ri-checkbox-circle-fill verified-icon"></i></h2>
+              </div>
+              <p class="group-desc">Canal oficial de anúncios, actualizações da plataforma digital e suporte aos negócios em Moçambique.</p>
               <div style="font-size: 13px; color: var(--primary); font-weight: 700;">📍 Sede Central: Av. 25 de Setembro, Maputo • 45.2k Seguidores</div>
             </div>
 
-            <button class="btn-primary" onclick="showToast('Acompanhando VONANA Oficial! 🔔')">
+            <button class="btn-primary" onclick="this.innerHTML='<i class=\'ri-notification-3-fill\'></i> Acompanhando'; showToast('Acompanhando VONANA Oficial! 🔔')">
               <i class="ri-notification-3-line"></i> Acompanhar Canal
             </button>
           </div>
@@ -660,14 +710,13 @@
               </div>
             </div>
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Organização sem fins lucrativos promovendo a inclusão digital e alfabetização tecnológica.</p>
-            <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="showToast('Seguindo Página! 🔔')">Seguir Página</button>
+            <button class="btn-secondary" style="width: 100%; justify-content: center;" onclick="this.innerHTML='A Seguir ✅'; this.classList.remove('btn-secondary'); this.classList.add('btn-primary'); showToast('Seguindo Página! 🔔')">Seguir Página</button>
           </div>
         </div>
 
       </div>
 
     </section>
-
 
     <!-- ==========================================================================
          PAGE 4: DEDICATED OFFICIAL SHOP VIEW (#page-shop)
@@ -1129,3 +1178,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+
